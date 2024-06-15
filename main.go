@@ -24,7 +24,7 @@ func main() {
 
 	if dtype == "string" {
 		randomstrings(n, len)
-	} else if dtype == "int" {
+	} else if dtype == "uint64" {
 		randomuints(n)
 	} else if dtype == "datetime" {
 		randomdates(n, format)
