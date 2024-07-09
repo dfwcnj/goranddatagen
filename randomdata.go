@@ -42,17 +42,11 @@ func randomstrings(n int, slen int, rlen bool) []string {
 // randomints(ņ int)
 // generate n random int64 values
 // return a slice containing the int64 values
-func randomuints(n int, rlen bool) []uint64 {
+func randomuints(n int) []uint64 {
 	usl := make([]uint64, 0)
 	for _ = range n {
 		fmt.Println(rand.Uint64())
 		usl = append(usl, rand.Uint64())
-	}
-	if rlen == true {
-		rl := rand.Intn(n)
-		if rl != 0 {
-			usl = usl[:rl]
-		}
 	}
 	return usl
 }

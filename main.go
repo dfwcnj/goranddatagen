@@ -32,7 +32,7 @@ func main() {
 			fmt.Println(l)
 		}
 	} else if dtype == "uint64" {
-		usl := randomuints(n, rlen)
+		usl := randomuints(n)
 		for _, u := range usl {
 			fmt.Println(u)
 		}
