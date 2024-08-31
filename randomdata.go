@@ -4,20 +4,22 @@ package main
 //package goranddatagen
 
 import (
+	"bufio"
 	"fmt"
 	"math/rand"
+	"os"
 	"time"
 )
 
-var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+var alphanum = []rune("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 // randSeq(n int)
-// generate a random string length n with lower, upper case letters and digits
+// generate a random string length n with lower, upper case alphanum and digits
 func randSeq(slen int, rlen bool) string {
 	b := make([]rune, slen)
-	ll := len(letters)
+	ll := len(alphanum)
 	for i := range b {
-		b[i] = letters[rand.Intn(ll)]
+		b[i] = alphanum[rand.Intn(ll)]
 	}
 	if rlen == true {
 		rl := rand.Intn(slen)
@@ -34,8 +36,12 @@ func randSeq(slen int, rlen bool) string {
 func randomstrings(n int64, slen int, rlen bool, emit bool) []string {
 	ssl := make([]string, 0)
 	if emit == true {
+		fp := os.Stdout
+		wp := bufio.NewWriterSize(fp, 1<<22)
+		defer wp.Flush()
 		for _ = range n {
-			fmt.Println(randSeq(slen, rlen))
+			s := fmt.Sprintln(randSeq(slen, rlen))
+			wp.WriteString(s)
 		}
 	} else {
 		for _ = range n {
@@ -51,8 +57,11 @@ func randomstrings(n int64, slen int, rlen bool, emit bool) []string {
 func randomuints(n int64, emit bool) []uint64 {
 	usl := make([]uint64, 0)
 	if emit == true {
+		fp := os.Stdout
+		wp := bufio.NewWriterSize(fp, 1<<22)
 		for _ = range n {
-			fmt.Println(rand.Uint64())
+			s := fmt.Sprintln(rand.Uint64())
+			wp.WriteString(s)
 		}
 	} else {
 		for _ = range n {
@@ -71,24 +80,28 @@ func randomdates(n int64, format string, emit bool) []string {
 	var s string
 	dsl := make([]string, 0)
 	if emit == true {
+		fp := os.Stdout
+		wp := bufio.NewWriterSize(fp, 1<<22)
+		var s string
 		for _ = range n {
 			ri := rand.Int63() % mod
 			tm := time.Unix(int64(ri), int64(0))
 
 			switch format {
 			case "DateTime":
-				fmt.Println(tm.Format(time.DateTime))
+				s = fmt.Sprintln(tm.Format(time.DateTime))
 			case "Layout":
-				fmt.Println(tm.Format(time.Layout))
+				s = fmt.Sprintln(tm.Format(time.Layout))
 			case "RubyDate":
-				fmt.Println(tm.Format(time.RubyDate))
+				s = fmt.Sprintln(tm.Format(time.RubyDate))
 			case "UnixDate":
-				fmt.Println(tm.Format(time.UnixDate))
+				s = fmt.Sprintln(tm.Format(time.UnixDate))
 			case "RFC3339":
-				fmt.Println(tm.Format(time.RFC3339))
+				s = fmt.Sprintln(tm.Format(time.RFC3339))
 			default:
-				fmt.Println(tm)
+				s = fmt.Sprintln(tm)
 			}
+			wp.WriteString(s)
 		}
 	} else {
 		for _ = range n {
