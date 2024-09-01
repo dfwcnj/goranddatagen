@@ -1,7 +1,4 @@
-// package goranddatagen generates random string, uint64, and datetime data
-package main
-
-//package goranddatagen
+package goranddatagen
 
 import (
 	"bufio"

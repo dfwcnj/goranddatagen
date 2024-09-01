@@ -1,12 +1,12 @@
 package main
 
-//package goranddatagen
-
 import (
 	"flag"
 	"log"
 	"math/rand"
 	"time"
+
+	"github.com/dfwcnj/roranddatagen/randomdata"
 )
 
 func main() {
