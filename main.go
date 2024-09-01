@@ -9,8 +9,8 @@ import (
 
 func main() {
 	var emit bool
-	var dtype string
 	var rlen bool
+	var dtype string
 	var format string
 	var slen int
 	var n int64
