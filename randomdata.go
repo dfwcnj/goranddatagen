@@ -1,4 +1,6 @@
-package goranddatagen
+package main
+
+//package goranddatagen
 
 import (
 	"bufio"
