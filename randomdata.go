@@ -33,17 +33,16 @@ func randSeq(slen int, rlen bool) string {
 // generate n random strings with length slen
 // return a slice containing the strings
 func randomstrings(n int64, slen int, rlen bool, emit bool) []string {
-	ssl := make([]string, 0)
+	//log.Print("rlen ", rlen)
+	var ssl []string
 	if emit == true {
-		fp := os.Stdout
-		wp := bufio.NewWriterSize(fp, 1<<22)
-		defer wp.Flush()
-		for _ = range n {
-			s := fmt.Sprintln(randSeq(slen, rlen))
-			wp.WriteString(s)
-		}
-	} else {
-		for _ = range n {
+		ssl = make([]string, 0)
+	}
+	for _ = range n {
+		s := randSeq(slen, rlen)
+		if emit == true {
+			fmt.Println(s)
+		} else {
 			ssl = append(ssl, randSeq(slen, rlen))
 		}
 	}

@@ -8,15 +8,15 @@ import (
 )
 
 func main() {
+	var emit bool
 	var dtype string
+	var rlen bool
 	var format string
 	var slen int
-	var rlen bool
-	var emit bool
 	var n int64
 
 	flag.BoolVar(&emit, "emit", false, "emit instead of return")
-	flag.BoolVar(&rlen, "rlen", true, "random lengtha")
+	flag.BoolVar(&rlen, "rlen", false, "random lengths")
 	flag.StringVar(&dtype, "datatype", "string", "type of data to sort - string, uint64, datetime")
 	flag.StringVar(&format, "format", "RFC3339", "if datatype is datetime, what date format")
 	flag.IntVar(&slen, "len", 32, "max length for random strings")
