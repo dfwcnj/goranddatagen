@@ -5,7 +5,7 @@ import (
 	"log"
 	"math/rand"
 	"time"
-	"github.com/dfwcnj/goranddatagen/randomdata"
+	"github.com/dfwcnj/randomdata"
 )
 
 func main() {
@@ -27,11 +27,11 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 
 	if dtype == "string" {
-		randomstrings(n, slen, rlen, emit)
+		randomdata.randomstrings(n, slen, rlen, emit)
 	} else if dtype == "uint64" {
-		randomuints(n, emit)
+		randomdata.randomuints(n, emit)
 	} else if dtype == "datetime" {
-		randomdates(n, format, emit)
+		randomdata.randomdates(n, format, emit)
 	} else {
 		log.Fatal("datatype may only be string, uint64, or datetime")
 	}
