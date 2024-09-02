@@ -5,6 +5,7 @@ import (
 	"log"
 	"math/rand"
 	"time"
+	"github.com/dfwcnj/goranddatagen/randomdata"
 )
 
 func main() {
