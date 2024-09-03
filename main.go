@@ -27,11 +27,11 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 
 	if dtype == "string" {
-		randomdata.randomstrings(n, slen, rlen, emit)
+		randomdata.Randomstrings(n, slen, rlen, emit)
 	} else if dtype == "uint64" {
-		randomdata.randomuints(n, emit)
+		randomdata.Randomuints(n, emit)
 	} else if dtype == "datetime" {
-		randomdata.randomdates(n, format, emit)
+		randomdata.Randomdates(n, format, emit)
 	} else {
 		log.Fatal("datatype may only be string, uint64, or datetime")
 	}
